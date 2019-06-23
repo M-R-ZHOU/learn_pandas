@@ -32,7 +32,8 @@ p = np.median(np.array([[4,5],[17,12]])) #输出中位数
 #np.cumsum 累和 返回的是每一次累和后的结果
 # np.nonzero Return the indices of the elements that are non-zero.
 sort = np.sort(np.array([[5,7,1],[45,6,74]]),axis=0)  # 二维数组中 axis = 1 等价于 -1 sort默认为-1
-#矩阵的转置的两种方法 np.transpose p.T
+#矩阵的转置的两种方法 np.transpose p.T 对于二维数组 两种方法的结果是相同的
+#对于高维度数组 比如三维数组 T == transpose(2,1,0) 
 mat2 = np.array([1,2,3,4])
 m = mat2.transpose()
 n = mat2.T
@@ -50,10 +51,37 @@ for i in mat3:
     print(i)
 #print(mat3.flatten()) #降维至一
 #print(mat3.flat)  #类似与迭代器，使其可迭代
+#print(np.ones((1,3)))  #[[1. 1. 1.]] 代表二维数组
+#print(np.ones((3,)))#[1. 1. 1.]  代表一维数组
 
+# 数组的合并
+# vertical stack 竖直堆放 horizontal stack 水平堆放
+a_1 = np.array([1,2,3,4])
+b_1 = np.arange(10,14)
+a_2 = a_1[:,np.newaxis] #添加一个维度，将行向量转变为列向量
+b_2 = b_1[:,np.newaxis]
+c_2 = np.hstack((a_2,b_2))
 
-
-
-
+print(c_2)
+print(np.ones((3,1)))
+c_1 = np.vstack((a_1,b_1))
+# vstack对于数组的合并更加灵活 两个一维行向量合并可以变成二维的
+print(c_1.ndim)
+c_3 = np.concatenate((np.array([[1,2,3],[4,5,6]]),np.array([[1,2,3]])),axis=0)
+#concatenate 对于数组的合并则要求目标数组维度要一致，同时，
+# 当对两个一维行向量进行合并时无法变成二维的，依旧是一维的
+print(c_1)
+print(c_3)
+#数组的分割
+mat_1 = np.random.randint(10,size = (5,7))
+print(mat_1)
+print(np.split(mat_1,[3,4],axis=1))
+#split 第二个参数是一个int时，代表等分，若不能等分则会报错 参数也可以指定一个列表
+#可以按照自己的意愿进行分割
+'''
+    Please refer to the ``split`` documentation.  ``vsplit`` is equivalent
+    to ``split`` with `axis=0` (default), the array is always split along the
+    first axis regardless of the array dimension.
+'''
 
 
