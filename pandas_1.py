@@ -38,8 +38,19 @@ m = mat2.transpose()
 n = mat2.T
 print(m)
 a = np.arange(10)
-print(np.clip(a, 1, 8,out=a)) 
+print(np.clip(a, 1, 8,out=a))
 #out参数表明a数组被返回的结果取代 clip函数的作用是将原有数组值的范围限定在给定的两个参数之间
+
+#index 对于一维数组索引类似于list 对于常用的二维数组来说 [1,2]代表第2行第三列 [1,:]代表第二行的全部数据
+#与list的切片操作一致
+mat3 = np.array([[1,2,3],[4,5,6],[7,8,9]])
+print(mat3[1,::2])
+# for 循环迭代矩阵的每一行，若想迭代每一行，则可以将矩阵进行转置矩阵，在进行循环迭代
+for i in mat3:
+    print(i)
+#print(mat3.flatten()) #降维至一
+#print(mat3.flat)  #类似与迭代器，使其可迭代
+
 
 
 
