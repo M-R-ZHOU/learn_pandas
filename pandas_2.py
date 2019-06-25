@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 dates = pd.date_range('2019-06-23',periods=6)
 df = pd.DataFrame(np.random.randn(6,4),index=dates,columns=['a','b','c','d'])
@@ -120,3 +121,16 @@ boys = pd.DataFrame({'k':['K0','K1','K2'],'age':[10,15,17]})
 girls = pd.DataFrame({'k':['K0','K1','K2'],'age':[11,18,13]})
 res = pd.merge(boys,girls,on='k',how='outer',suffixes=['_boys','_girls'])
 print(res)
+'''
+data = pd.Series(np.random.randn(1000))
+data = data.cumsum()
+data.plot()
+plt.show()
+'''
+data = pd.DataFrame(np.random.randn(1000,4),columns=list('ABCD'))
+data = data.cumsum()
+data.plot()
+plt.show()
+ax = data.plot.scatter(x='A',y='B',c='DarkBlue',label='Class1')
+data.plot.scatter(x='A',y='C',c='Darkgreen',label='Class2',ax=ax)
+plt.show()
